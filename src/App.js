@@ -11,7 +11,7 @@ import RouterComponent from './Router';
 class App extends React.Component {
   componentWillMount() {
     var config = {
-      apiKey: ' AIzaSyCM_755Um9Gc9R2j5vecsuHqz4xjjv66Ew',
+      apiKey: '',
       authDomain: 'manager-b3af5.firebaseapp.com',
       databaseURL: 'https://manager-b3af5.firebaseio.com',
       storageBucket: 'manager-b3af5.appspot.com',
