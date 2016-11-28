@@ -4,7 +4,7 @@ import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATE,
   EMPLOYEES_FETCH_SUCCESS,
-  EMPLOYEE_SAVE,
+  EMPLOYEE_SAVE_SUCCESS,
 } from './types';
 
 export const employeeUpdate = ({ prop, value }) => {
@@ -48,8 +48,20 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
       .set({ name, phone, shift })
       .then(() => {
-        dispatch({ type: EMPLOYEE_SAVE });
+        dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
         Actions.employeeList({ type: 'reset' });
+      });
+  };
+};
+
+export const employeeDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+  console.log(`/users/${currentUser.uid}/employees/${uid}`);
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .remove()
+      .then(() => {
+          Actions.employeeList({ type: 'reset'});
       });
   };
 };
